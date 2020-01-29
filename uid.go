@@ -21,6 +21,22 @@ import (
 	"github.com/sony/sonyflake"
 )
 
+var (
+	a = `<pre>
+/<a href=betterguid>betterguid</a>  <a href=https://github.com/kjk/betterguid>github.com/kjk/betterguid</a>
+/<a href=ksuid>ksuid</a>       <a href=https://github.com/segmentio/ksuid>github.com/segmentio/ksuid</a>
+/<a href=shortuuid>shortuuid</a>   <a href=https://github.com/lithammer/shortuuid>github.com/lithammer/shortuuid</a>
+/<a href=sid>sid</a>         <a href=https://github.com/chilts/sid>github.com/chilts/sid</a>
+/<a href=sonyflake>sonyflake</a>   <a href=https://github.com/sony/sonyflake>github.com/sony/sonyflake</a>
+/<a href=ulid>ulid</a>        <a href=https://github.com/oklog/ulid>github.com/oklog/ulid</a>
+/<a href=uuid>uuid</a>        <a href=https://github.com/google/uuid>github.com/google/uuid</a>
+/<a href=uuidv4>uuidv4</a>      <a href=https://github.com/satori/go.uuid>github.com/satori/go.uuid</a>
+/<a href=xid>xid</a>         <a href=https://github.com/rs/xid>github.com/rs/xid</a>
+
+* see <a href=https://blog.kowalczyk.info/article/JyRZ/generating-good-unique-ids-in-go.html>generating good unique ids in go</a>
+</pre>`
+)
+
 func genShortUUID(w http.ResponseWriter, req *http.Request) {
 	id := shortuuid.New()
 	io.WriteString(w, id)
@@ -87,20 +103,7 @@ func genUUIDv4(w http.ResponseWriter, req *http.Request) {
 
 func genAdmin(w http.ResponseWriter, req *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
-	
-	var s = "<pre>" 
-	s += "/<a href=betterguid>betterguid</a>  <a href=https://github.com/kjk/betterguid>github.com/kjk/betterguid</a><br>"
-	s += "/<a href=ksuid>ksuid</a>       <a href=https://github.com/segmentio/ksuid>github.com/segmentio/ksuid</a><br>"
-	s += "/<a href=shortuuid>shortuuid</a>   <a href=https://github.com/lithammer/shortuuid>github.com/lithammer/shortuuid</a><br>"
-	s += "/<a href=sid>sid</a>         <a href=https://github.com/chilts/sid>github.com/chilts/sid</a><br>"
-	s += "/<a href=sonyflake>sonyflake</a>   <a href=https://github.com/sony/sonyflake>github.com/sony/sonyflake</a><br>"
-	s += "/<a href=ulid>ulid</a>        <a href=https://github.com/oklog/ulid>github.com/oklog/ulid</a><br>"
-	s += "/<a href=uuid>uuid</a>        <a href=https://github.com/google/uuid>github.com/google/uuid</a><br>"
-	s += "/<a href=uuidv4>uuidv4</a>      <a href=https://github.com/satori/go.uuid>github.com/satori/go.uuid</a><br>"
-	s += "/<a href=xid>xid</a>         <a href=https://github.com/rs/xid>github.com/rs/xid</a><br>"
-	s += "<br>* see <a href=https://blog.kowalczyk.info/article/JyRZ/generating-good-unique-ids-in-go.html>generating good unique ids in go</a>"
-	s += "</pre>"
-	io.WriteString(w, s)
+	io.WriteString(w, a)
 }
 
 func main() {
